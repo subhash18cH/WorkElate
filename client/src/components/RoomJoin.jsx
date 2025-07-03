@@ -19,7 +19,13 @@ const RoomJoin = () => {
         style={{ margin: "12px", padding: "6px" }}
         placeholder="Enter Room Code"
         value={roomId}
-        onChange={(e) => setRoomId(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value.toUpperCase();
+          const isValid = /^[A-Za-z0-9]{0,6}$/.test(value);
+          if (isValid) {
+            setRoomId(value);
+          }
+        }}
       />
       <button style={{ backgroundColor: "gray", padding: "3px", cursor: "pointer", }}
         onMouseEnter={(e) => e.target.style.backgroundColor = "darkgray"}
