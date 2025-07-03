@@ -101,10 +101,9 @@ The application will be available at `http://localhost:3000`
     "drawingData": [],
     "__v": 0
 }
+```
 
 ####  GET /api/rooms/:id
-
-**Request Body:**
 
 **Response Body:**
 ```json
@@ -143,7 +142,8 @@ The application will be available at `http://localhost:3000`
 | `clear-canvas` | *(no payload)* | Instruct clients to clear their canvas |
 | `cursor-move` | `{ id, x, y }` | Broadcast real-time cursor movement |
 
-
+## Author
+Created by **Subhash Chand**
 
 
 
