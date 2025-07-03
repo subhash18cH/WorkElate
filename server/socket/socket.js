@@ -49,8 +49,6 @@ io.on('connection', (socket) => {
 
   socket.on('draw-end', async (data) => {
     socket.broadcast.to(socket.roomId).emit('draw-end', { id: socket.id, ...data });
-
-    // Store to DB
     await Room.updateOne(
       { roomId: socket.roomId },
       { $push: { drawingData: { type: "stroke", data } }, $set: { lastActivity: new Date() } }
@@ -70,15 +68,12 @@ io.on('connection', (socket) => {
     if (roomId && roomUserCount[roomId]) {
       roomUserCount[roomId].delete(socket.id);
 
-      // Notify remaining users
       io.to(roomId).emit('user-count', roomUserCount[roomId].size);
 
-      // Optional cleanup
       if (roomUserCount[roomId].size === 0) {
         delete roomUserCount[roomId];
       }
     }
-
     console.log('User disconnected:', socket.id);
   });
 });
